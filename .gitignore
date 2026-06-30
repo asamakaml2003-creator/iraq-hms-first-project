@@ -1,24 +1,46 @@
-# Environment files
+# ─── Environment ──────────────────────────────────────────────────────────────
 .env
 .env.local
 .env.*.local
 
-# Build output
+# ─── Dependencies ─────────────────────────────────────────────────────────────
+node_modules/
+
+# ─── Build output ─────────────────────────────────────────────────────────────
 dist/
 build/
 out/
-node_modules/
+release/
 
-# macOS
-.DS_Store
+# ─── Prisma generated ─────────────────────────────────────────────────────────
+backend/prisma/generated/
 
-# Claude Code local settings
-.claude/
+# ─── Uploads / user files ─────────────────────────────────────────────────────
+backend/uploads/
 
-# Logs
+# ─── Logs ─────────────────────────────────────────────────────────────────────
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Runtime
-*.pid
-*.seed
+# ─── macOS ────────────────────────────────────────────────────────────────────
+.DS_Store
+*.DS_Store
+
+# ─── IDE ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ─── Claude Code ──────────────────────────────────────────────────────────────
+.claude/
+
+# ─── Electron packaged app ────────────────────────────────────────────────────
+*.dmg
+*.exe
+*.AppImage
+*.snap
