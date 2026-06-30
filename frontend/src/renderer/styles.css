@@ -1,0 +1,75 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+}
+
+.hms-sidebar { background: #1a2744 !important; }
+.hms-sidebar .ant-menu { background: transparent !important; color: #c8d6e5; }
+.hms-sidebar .ant-menu-item-selected { background: #1a5276 !important; }
+.hms-sidebar .ant-menu-item:hover { background: rgba(255,255,255,0.08) !important; }
+.hms-sidebar .ant-menu-sub { background: #111c36 !important; }
+.hms-sidebar .ant-menu-item, .hms-sidebar .ant-menu-submenu-title { color: #c8d6e5 !important; }
+
+.hms-header {
+  background: #fff;
+  border-bottom: 1px solid #e8ecf0;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0,21,41,0.08);
+}
+
+.stat-card { border-radius: 8px; border: none; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+.stat-card .ant-statistic-title { color: #666; font-size: 13px; }
+.stat-card .ant-statistic-content { font-size: 28px; font-weight: 700; }
+
+.page-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ant-table-thead > tr > th { background: #f7f9fb !important; font-weight: 600; }
+
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a2744 0%, #1a5276 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.logo-area {
+  text-align: center;
+  padding: 24px 0 8px;
+}
+
+.logo-area h1 { color: #1a2744; font-size: 20px; font-weight: 700; margin: 8px 0 4px; }
+.logo-area p  { color: #666; font-size: 13px; }
+
+.role-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-doctor     { background: #d5e8d4; color: #27ae60; }
+.badge-nurse      { background: #dae8fc; color: #2980b9; }
+.badge-pharmacist { background: #ffe6cc; color: #e67e22; }
+.badge-admin      { background: #e1d5e7; color: #8e44ad; }
+.badge-lab        { background: #fff2cc; color: #f39c12; }

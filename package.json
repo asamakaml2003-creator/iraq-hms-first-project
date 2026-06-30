@@ -1,0 +1,14 @@
+{
+  "name": "iraq-hms",
+  "version": "1.0.0",
+  "description": "Iraq Hospital Management System",
+  "scripts": {
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "db:migrate": "cd backend && npx prisma migrate dev",
+    "db:push": "cd backend && npx prisma db push",
+    "db:seed": "cd backend && npm run db:seed",
+    "db:studio": "cd backend && npx prisma studio"
+  }
+}
