@@ -7,13 +7,23 @@
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "start": "electron-vite preview",
-    "package": "electron-vite build && electron-builder"
+    "package": "cd ../backend && npm run build && cd ../frontend && electron-vite build && electron-builder"
   },
   "main": "out/main/index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "build": {
+    "appId": "iq.iraqhms.app",
+    "productName": "Iraq HMS",
+    "extraResources": [
+      { "from": "../backend/dist", "to": "backend/dist" },
+      { "from": "../backend/node_modules", "to": "backend/node_modules" },
+      { "from": "../backend/package.json", "to": "backend/package.json" },
+      { "from": "../backend/prisma", "to": "backend/prisma" }
+    ]
+  },
   "dependencies": {
     "@ant-design/icons": "^6.3.2",
     "antd": "^6.5.0",
