@@ -1,6 +1,7 @@
 import { app, BrowserWindow, shell } from 'electron';
 import { spawn, ChildProcess } from 'child_process';
 import fs from 'fs';
+import http from 'http';
 import path from 'path';
 
 let backendProcess: ChildProcess | null = null;
@@ -79,6 +80,31 @@ function startBackend() {
   });
 }
 
+// The renderer's first API call (e.g. the dashboard stats fetch) fires the
+// moment the window loads. The backend takes noticeably longer to actually
+// bind its port (Node cold start + Prisma engine load + DB connect), so
+// that first request loses the race almost every launch and permanently
+// shows "make sure the backend is running" - the page never retries.
+// Poll /health before creating the window so the renderer only ever loads
+// once the backend can actually answer requests.
+function waitForBackendReady(timeoutMs: number): Promise<void> {
+  const deadline = Date.now() + timeoutMs;
+  return new Promise((resolve) => {
+    const attempt = () => {
+      const req = http.get({ host: 'localhost', port: 3001, path: '/health', timeout: 1000 }, (res) => {
+        res.resume();
+        resolve();
+      });
+      req.on('error', () => {
+        if (Date.now() >= deadline) return resolve();
+        setTimeout(attempt, 200);
+      });
+      req.on('timeout', () => req.destroy());
+    };
+    attempt();
+  });
+}
+
 function stopBackend() {
   if (backendProcess && !backendProcess.killed) {
     backendProcess.kill();
@@ -125,8 +151,9 @@ if (gotSingleInstanceLock) {
     }
   });
 
-  app.whenReady().then(() => {
+  app.whenReady().then(async () => {
     startBackend();
+    await waitForBackendReady(15000);
     createWindow();
   });
 
